@@ -98,7 +98,7 @@ class AdminCommand extends GeneratorCommand
      */
     private function getStubContents($file)
     {
-        $contents = file_get_contents(__DIR__ . $file);
+        $contents = file_get_contents(__DIR__ . '/../stubs/' . $file);
 
         return str_replace('{{ namespace }}', $this->getAppNamespace(), $contents);
     }
@@ -112,7 +112,7 @@ class AdminCommand extends GeneratorCommand
     {
         file_put_contents(
             base_path() . '/app/Http/routes.php', 
-            file_get_contents(__DIR__ . '/' . $this->routes),
+            file_get_contents(__DIR__ . '/../stubs/' . $this->routes),
             FILE_APPEND
         );
     }
