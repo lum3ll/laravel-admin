@@ -11,6 +11,6 @@ class AdminCommand extends Command
 
     public function fire()
     {
-
+        
     }
 }
