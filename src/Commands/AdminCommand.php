@@ -14,7 +14,7 @@ class AdminCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'admin';
+    protected $name = 'admin:make';
 
     /**
      * The command description.
@@ -36,6 +36,13 @@ class AdminCommand extends GeneratorCommand
     ];
 
     /**
+     * Routes stub.
+     *
+     * @var string
+     */
+    protected $routes = 'routes.stub';
+
+    /**
      * Fire the admin command.
      *
      * @return void
@@ -44,6 +51,7 @@ class AdminCommand extends GeneratorCommand
     {
         $this->createAdminDirectories();
         $this->turnStubsIntoFiles();
+        $this->appendRoutesStubToRoutes();
     }
 
     /**
@@ -76,5 +84,19 @@ class AdminCommand extends GeneratorCommand
 
             file_put_contents($filename, file_get_contents(__DIR__ . $value));
         }
+    }
+
+    /**
+     * Add admin routes.
+     *
+     * @return void
+     */
+    private function appendRoutesStubToRoutes()
+    {
+        file_put_contents(
+            base_path() . '/app/Http/routes.php', 
+            file_get_contents(__DIR__ . '/' . $this->routes)
+            FILE_APPEND
+        );
     }
 }
