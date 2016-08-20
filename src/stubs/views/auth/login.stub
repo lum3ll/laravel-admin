@@ -1,0 +1,30 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Login to your admin account</div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="/admin/login" method="POST">
+                    <div class="form-group">
+                        <label class="col-sm-3 text-right">Username</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="username" placeholder="Your username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 text-right">Password</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" name="password" placeholder="Your password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-7 col-sm-push-3">
+                            <button class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
