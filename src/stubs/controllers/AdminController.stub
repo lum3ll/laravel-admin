@@ -2,8 +2,8 @@
 
 namespace {{ namespace }}Http\Controllers;
 
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -25,6 +25,6 @@ class AdminController extends Controller
 
     public function logout()
     {
-
+        
     }
 }
