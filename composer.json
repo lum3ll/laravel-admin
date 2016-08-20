@@ -1,0 +1,22 @@
+{
+    "name": "jordanbardsley7/laravel-admin",
+    "description": "Laravel administration backend.",
+    "type": "project",
+    "license": "MIT",
+    "keywords": ["Laravel", "Admin"],
+    "authors": [
+        {
+            "name": "Jordan Bardsley",
+            "email": "jordanbardsley7@yahoo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "LaravelAdmin\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.6.4"
+    }
+}
