@@ -2,10 +2,10 @@
 
 namespace LaravelAdmin\Commands;
 
-use Illuminate\Console\GeneratorCommand;
+use Illuminate\Console\Command;
 use Illuminate\Console\AppNamespaceDetectorTrait;
 
-class AdminCommand extends GeneratorCommand
+class AdminCommand extends Command
 {
     use AppNamespaceDetectorTrait;
 
