@@ -1,10 +1,30 @@
 <?php
 
-namespace {{ namespace }}\Http\Controllers;
+namespace {{ namespace }}Http\Controllers;
 
+use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        return view('admin.dashboard');
+    }
 
+    public function login()
+    {
+        return view('admin.auth.login');
+    }
+
+    public function check(Request $request)
+    {
+
+    }
+
+    public function logout()
+    {
+
+    }
 }
