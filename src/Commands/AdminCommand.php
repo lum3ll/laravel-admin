@@ -24,12 +24,23 @@ class AdminCommand extends Command
     protected $description = 'Generate the laravel admin backend.';
 
     /**
+     * Application directories.
+     *
+     * @var array
+     */
+    protected $directories = [
+        'resources/views/admin',
+        'resources/views/templates',
+        'resources/views/admin/auth'
+    ];
+
+    /**
      * File stubs.
      *
      * @var array
      */
     protected $files = [
-        'resources/views/templates/admin.blade.php' => 'views/templates/admin.stub',
+        '/resources/views/templates/admin.blade.php' => 'views/templates/admin.stub',
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
         '/database/migrations/created_admin_users_table.php' => 'migrations/create_admin_users_table.stub',
@@ -62,12 +73,10 @@ class AdminCommand extends Command
      */
     private function createAdminDirectories()
     {
-        if (!is_dir(base_path('resources/views/admin'))) {
-            mkdir(base_path('resources/views/admin'));
-        }
-
-        if (!is_dir(base_path('resources/views/templates'))) {
-            mkdir(base_path('resources/views/templates'));
+        foreach ($this->directories as $directory) {
+            if (!is_dir($directory)) {
+                mkdir($directory);
+            }
         }
     }
 
@@ -78,9 +87,9 @@ class AdminCommand extends Command
      */
     private function turnStubsIntoFiles()
     {
-        foreach ($this->views as $key => $value) {
+        foreach ($this->files as $key => $value) {
             // Format a file location from the array of stubs
-            // that need to be turned into views.
+            // that need to be turned into views/files.
             $filename = base_path() . $key;
 
             // Create the view and then copy the contents of

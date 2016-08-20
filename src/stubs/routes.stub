@@ -1,5 +1,3 @@
 
-Route::get('/admin/login', 'AdminController@login');
-Route::post('/admin/login', 'AdminController@check');
-Route::get('/admin/logout', 'AdminController@logout');
-Route::get('/admin/dashboard', 'AdminController@index');
+Route::get('/admin/login', 'AdminAuthController@index');
+Route::post('/admin/login', 'AdminAuthController@check');
