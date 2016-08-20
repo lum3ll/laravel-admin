@@ -112,7 +112,7 @@ class AdminCommand extends GeneratorCommand
     {
         file_put_contents(
             base_path() . '/app/Http/routes.php', 
-            file_get_contents(__DIR__ . '/' . $this->routes)
+            file_get_contents(__DIR__ . '/' . $this->routes),
             FILE_APPEND
         );
     }
