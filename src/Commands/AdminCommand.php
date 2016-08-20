@@ -29,6 +29,7 @@ class AdminCommand extends GeneratorCommand
      * @var array
      */
     protected $files = [
+        'resources/views/templates/admin.blade.php' => 'views/templates/admin.stub',
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
         '/database/migrations/created_admin_users_table.php' => 'migrations/create_admin_users_table.stub',
@@ -63,6 +64,10 @@ class AdminCommand extends GeneratorCommand
     {
         if (!is_dir(base_path('resources/views/admin'))) {
             mkdir(base_path('resources/views/admin'));
+        }
+
+        if (!is_dir(base_path('resources/views/templates'))) {
+            mkdir(base_path('resources/views/templates'));
         }
     }
 
