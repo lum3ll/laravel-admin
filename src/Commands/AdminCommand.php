@@ -87,8 +87,20 @@ class AdminCommand extends GeneratorCommand
             // the stub into the view.
             touch($filename);
 
-            file_put_contents($filename, file_get_contents(__DIR__ . $value));
+            file_put_contents($filename, $this->getStubContents($value));
         }
+    }
+
+    /**
+     * Retrieve stub contents.
+     *
+     * @return mixed
+     */
+    private function getStubContents($file)
+    {
+        $contents = file_get_contents(__DIR__ . $file);
+
+        return str_replace('{{ namespace }}', $this->getAppNamespace(), $contents);
     }
 
     /**
