@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelAdmin\Commands\AdminCommand;
+namespace LaravelAdmin\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\AppNamespaceDetectorTrait;
