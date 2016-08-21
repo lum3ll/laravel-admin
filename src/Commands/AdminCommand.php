@@ -41,6 +41,7 @@ class AdminCommand extends Command
      * @var array
      */
     protected $files = [
+        '/config/admin.php' => 'config/admin.stub',
         '/resources/views/templates/admin.blade.php' => 'views/templates/admin.stub',
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',

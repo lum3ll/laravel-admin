@@ -1,0 +1,19 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin configuration
+    |--------------------------------------------------------------------------
+    |
+    | The below array will be used to determine any tables that you want
+    | to show in the laravel admin backend.
+    |
+    */
+
+    'models' => [
+        // \App\User::class
+    ],
+
+];

@@ -74,5 +74,9 @@ class AdminCommandTest extends PHPUnit_Framework_TestCase
         if (!is_dir('output/resources/views')) {
             mkdir('output/resources/views');
         }
+
+        if (!is_dir('output/config')) {
+            mkdir('output/config');
+        }
     }
 }
