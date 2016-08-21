@@ -29,9 +29,9 @@ class AdminCommand extends Command
      * @var array
      */
     protected $directories = [
-        'resources/views/admin',
-        'resources/views/templates',
-        'resources/views/admin/auth'
+        '/resources/views/admin',
+        '/resources/views/templates',
+        '/resources/views/admin/auth'
     ];
 
     /**
@@ -44,7 +44,7 @@ class AdminCommand extends Command
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
         '/database/migrations/created_admin_users_table.php' => 'migrations/create_admin_users_table.stub',
-        '/app/Http/Controllers/AdminController.php' => 'controllers/AdminController.stub'
+        '/app/Http/Controllers/AdminController.php' => 'controllers/AdminAuthController.stub'
     ];
 
     /**
@@ -61,9 +61,19 @@ class AdminCommand extends Command
      */
     public function fire()
     {
+        // Create all necessary admin directories
+        // before turning the stubs into files.
         $this->createAdminDirectories();
+
+        // Turn any necessary laravel admin stubs
+        // into files and create those files.
         $this->turnStubsIntoFiles();
+
+        // Append any laravel admin routes to the
+        // current application routes file.
         $this->appendRoutesStubToRoutes();
+
+        $this->comment('Laravel admin has been installed, please run your migrations.');
     }
 
     /**
@@ -74,8 +84,8 @@ class AdminCommand extends Command
     private function createAdminDirectories()
     {
         foreach ($this->directories as $directory) {
-            if (!is_dir($directory)) {
-                mkdir($directory);
+            if (!is_dir(base_path() . $directory)) {
+                mkdir(base_path() . $directory);
             }
         }
     }
@@ -109,7 +119,8 @@ class AdminCommand extends Command
     {
         $contents = file_get_contents(__DIR__ . '/../stubs/' . $file);
 
-        return str_replace('{{ namespace }}', $this->getAppNamespace(), $contents);
+        // return str_replace('{{ namespace }}', $this->getAppNamespace(), $contents);
+        return str_replace('{{ namespace }}', 'App\\', $contents);
     }
 
     /**
@@ -119,10 +130,25 @@ class AdminCommand extends Command
      */
     private function appendRoutesStubToRoutes()
     {
-        file_put_contents(
-            base_path() . '/app/Http/routes.php', 
-            file_get_contents(__DIR__ . '/../stubs/' . $this->routes),
-            FILE_APPEND
-        );
+        if ($this->canReadRoutesFile())
+        {
+            // Retrieve the contents of the routes stub
+            // before writing to the application routes.
+            $contents = file_get_contents(__DIR__ . '/../stubs/' . $this->routes);
+
+            // Append the contents of the routes stub
+            // to the existing application routes.
+            file_put_contents(base_path() . '/app/Http/routes.php', $contents,  FILE_APPEND);
+        }
+    }
+
+    /**
+     * If the routes file exists.
+     *
+     * @return boolean
+     */
+    private function canReadRoutesFile()
+    {
+        return file_exists(base_path() . '/app/Http/routes.php');
     }
 }
