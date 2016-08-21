@@ -1,0 +1,10 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Your dashboard</div>
+            <div class="panel-body">Laravel admin dashboard.</div>
+        </div>
+    </div>
+@endsection

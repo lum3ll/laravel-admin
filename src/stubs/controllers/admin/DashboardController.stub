@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }}Http\Controllers\Admin;
+
+use Illuminate\Http\Controllers\Controller;
+
+class DashboardController extends Controller
+{
+    /**
+     * Render the admin dashboard.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('admin.dashboard');
+    }
+}
