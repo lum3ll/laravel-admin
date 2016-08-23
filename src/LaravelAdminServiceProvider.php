@@ -4,6 +4,7 @@ namespace LaravelAdmin;
 
 use Illuminate\Support\ServiceProvider;
 use LaravelAdmin\Commands\AdminUpCommand;
+use LaravelAdmin\Commands\AdminDownCommand;
 
 class LaravelAdminServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function getCommands()
     {
         return [
-            AdminUpCommand::class
+            AdminUpCommand::class,
+            AdminDownCommand::class
         ];
     }
 }
