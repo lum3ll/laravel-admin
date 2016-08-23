@@ -4,56 +4,24 @@ namespace LaravelAdmin\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\AppNamespaceDetectorTrait;
+use LaravelAdmin\Traits\LaravelAdminTrait;
 use LaravelAdmin\Exceptions\RoutesNotFoundException;
 
-class AdminCommand extends Command
+class AdminUpCommand extends Command
 {
-    use AppNamespaceDetectorTrait;
+    use AppNamespaceDetectorTrait, LaravelAdminTrait;
 
     /**
-     * The command name.
-     *
      * @var string
      */
-    protected $name = 'admin:make';
+    protected $name = 'admin:up';
 
     /**
-     * The command description.
-     *
      * @var string
      */
     protected $description = 'Generate the laravel admin backend.';
 
     /**
-     * Application directories.
-     *
-     * @var array
-     */
-    protected $directories = [
-        '/resources/views/admin',
-        '/resources/views/templates',
-        '/resources/views/admin/auth',
-        '/app/Http/Controllers/Admin'
-    ];
-
-    /**
-     * File stubs.
-     *
-     * @var array
-     */
-    protected $files = [
-        '/config/admin.php' => 'config/admin.stub',
-        '/resources/views/layouts/admin.blade.php' => 'views/templates/admin.stub',
-        '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
-        '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
-        '/database/migrations/created_admin_users_table.php' => 'migrations/create_admin_users_table.stub',
-        '/app/Http/Controllers/Admin/AuthController.php' => 'controllers/admin/AuthController.stub',
-        '/app/Http/Controllers/Admin/DashboardController.php' => 'controllers/admin/DashboardController.stub'
-    ];
-
-    /**
-     * Routes stub.
-     *
      * @var string
      */
     protected $routes = 'routes.stub';

@@ -1,8 +1,6 @@
 
 Route::group(['namespace' => 'Admin'], function () {
     Route::get(config('admin.prefix') . '/login', 'AuthController@index');
-    
     Route::post(config('admin.prefix') . '/login', 'AdminAuthController@check');
-    
     Route::get(config('admin.prefix') . '/dashboard', 'DashboardController@index');
 });

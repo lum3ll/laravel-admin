@@ -1,44 +1,47 @@
 <?php
 
 use Illuminate\Container\Container;
-use LaravelAdmin\Commands\AdminCommand;
+use LaravelAdmin\Commands\AdminUpCommand;
+use LaravelAdmin\Commands\AdminDownCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
+function base_path() {
+    return dirname(__DIR__) . '/../output';
+}
+
 class AdminCommandTest extends PHPUnit_Framework_TestCase
 {
-    public function testAdminMakeCommand()
+    public function testAdminUpCommand()
     {
-        // create any directories/files for the tests
-        // in the root of the project.
         $this->makeAnyNeededDirectoriesOrFiles();
 
-        // Create a "mock" base_path helper function
-        // similar to laravels base_path helper.
-        function base_path() {
-            return dirname(__DIR__) . '/../output';
-        }
-
-        // Setup a new symfony console
-        // application instance.
         $app = new Application;
-        $app->add(new AdminCommand);
+        $app->add(new AdminUpCommand);
 
-        // Retrieve the command from the application
-        // and then setup a new contianer.
-        $command = $app->find('admin:make');
+        $command = $app->find('admin:up');
         $command->setLaravel(new Container);
 
-        // Create a new command tester instance
-        // and run the command.
         $tester = new CommandTester($command);
         $tester->execute([ 'command' => $command->getName() ]);
 
-        // When the test is finished running
-        // remove the output directories.
-        exec('rm -R output/');
-
         $this->assertSame(trim($tester->getDisplay()), 'Laravel admin has been installed, please run your migrations.');
+    }
+
+    public function testAdminDownCommand()
+    {
+        $app = new Application;
+        $app->add(new AdminDownCommand);
+
+        $command = $app->find('admin:down');
+        $command->setLaravel(new Container);
+
+        $tester = new CommandTester($command);
+        $tester->execute([ 'command' => $command->getName() ]);
+
+        $this->assertSame(trim($tester->getDisplay()), 'The generated admin directories/files have been removed.');
+
+        exec('rm -R output/');
     }
 
     private function makeAnyNeededDirectoriesOrFiles()
