@@ -23,10 +23,6 @@ class Registry
      */
     public static function add($key, $value)
     {
-        if (!$value instanceof Model) {
-            throw new InvalidArgumentException("Expected Eloquent model.");
-        }
-
         static::$models[$key] = $value;
     }
 
