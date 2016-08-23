@@ -2,6 +2,7 @@
 
 namespace LaravelAdmin;
 
+use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 
 class Registry

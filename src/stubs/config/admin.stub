@@ -4,7 +4,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Admin configuration
+    | Admin route prefix.
+    |--------------------------------------------------------------------------
+    |
+    | The below string is used to determine the route prefix when accessing
+    | administrator routes. For example "/admin/dashboard".
+    |
+    */
+    'prefix' => '/admin',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin model backends.
     |--------------------------------------------------------------------------
     |
     | The below array will be used to determine any tables that you want
