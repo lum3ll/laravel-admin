@@ -141,7 +141,7 @@ class AdminCommand extends Command
 
             // Append the contents of the routes stub
             // to the existing application routes.
-            file_put_contents(base_path() . '/app/Http/routes.php', $contents,  FILE_APPEND);
+            file_put_contents(base_path() . '/routes/web.php', $contents,  FILE_APPEND);
         }
     }
 
