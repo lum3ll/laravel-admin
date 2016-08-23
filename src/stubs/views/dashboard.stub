@@ -4,7 +4,13 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">Your dashboard</div>
-            <div class="panel-body">Laravel administration dashboard.</div>
+            <div class="panel-body">
+                @if ($models->count() > 0)
+                    You have models!
+                @else
+                    You haven't registered any backend's yet.
+                @endif
+            </div>
         </div>
     </div>
 @endsection
