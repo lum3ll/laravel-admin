@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $models = Registry::all();
 
         return view('admin.dashboard')
-            ->with('models', $models);
+            ->with('models', collect($models));
     }
 
     /**
