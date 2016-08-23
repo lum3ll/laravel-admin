@@ -3,7 +3,7 @@
 namespace {{ namespace }}Http\Controllers\Admin;
 
 use LaravelAdmin\Registry;
-use Illuminate\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
