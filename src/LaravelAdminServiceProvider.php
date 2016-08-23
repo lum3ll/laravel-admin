@@ -14,6 +14,18 @@ class LaravelAdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands([ AdminCommand::class ]);
+        $this->commands($this->getCommands());
+    }
+
+    /**
+     * Any commands that need to be registered.
+     *
+     * @return array
+     */
+    private function getCommands()
+    {
+        return [
+            AdminCommand::class
+        ];
     }
 }
