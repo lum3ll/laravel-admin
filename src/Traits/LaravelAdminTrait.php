@@ -9,7 +9,7 @@ trait LaravelAdminTrait
      */
     protected $directories = [
         '/resources/views/admin',
-        '/resources/views/templates',
+        '/resources/views/layouts',
         '/resources/views/admin/auth',
         '/app/Http/Controllers/Admin'
     ];
