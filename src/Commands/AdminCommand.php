@@ -152,6 +152,6 @@ class AdminCommand extends Command
      */
     private function canReadRoutesFile()
     {
-        return file_exists(base_path() . '/app/Http/routes.php');
+        return file_exists(base_path() . '/routes/web.php');
     }
 }
