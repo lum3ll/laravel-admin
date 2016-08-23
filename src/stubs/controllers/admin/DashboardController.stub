@@ -2,10 +2,21 @@
 
 namespace {{ namespace }}Http\Controllers\Admin;
 
+use LaravelAdmin\Registry;
 use Illuminate\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    /**
+     * DashboardController constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->retrieveBackends();
+    }
+
     /**
      * Render the admin dashboard.
      *
@@ -13,6 +24,23 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $models = Registry::all();
+
+        return view('admin.dashboard')
+            ->with('models', $models);
+    }
+
+    /**
+     * Retrieve all models.
+     *
+     * @return void
+     */
+    private function retrieveBackends()
+    {
+        $confi = require base_path() . '/config/admin.php';
+
+        foreach ($config['models'] as $model) {
+            Registry::add($model);
+        }
     }
 }
