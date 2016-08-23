@@ -13,7 +13,7 @@ return [
     */
 
     'models' => [
-        // \App\User::class
+        // 'users' => \App\User::class
     ],
 
 ];

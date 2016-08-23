@@ -2,6 +2,5 @@
 Route::group(['namespace' => 'Admin'], function () {
     Route::get('/admin/login', 'AuthController@index');
     Route::post('/admin/login', 'AdminAuthController@check');
-    
     Route::get('/admin/dashboard', 'DashboardController@index');
 });
