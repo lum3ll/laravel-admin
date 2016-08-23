@@ -37,10 +37,10 @@ class DashboardController extends Controller
      */
     private function retrieveBackends()
     {
-        $models = config('admin.mdoels');
-        
-        foreach ($models as $model) {
-            Registry::add($model);
+        $models = config('admin.models');
+
+        foreach ($models as $key => $value) {
+            Registry::add($key, $value);
         }
     }
 }

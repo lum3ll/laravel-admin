@@ -14,35 +14,36 @@ class Registry
     /**
      * Register a new eloquent model.
      *
-     * @param  mixed  $model
+     * @param  string  $key
+     * @param  mixed  $value
      *
      * @throws \InvalidArgumentException
      * @return void
      */
-    public static function add($model)
+    public static function add($key, $value)
     {
-        if (!$model instanceof Model) {
+        if (!$value instanceof Model) {
             throw new InvalidArgumentException("Expected Eloquent model.");
         }
 
-        array_push(static::$models, $model);
+        static::$models[$key] = $value;
     }
 
     /**
      * Retrieve a model.
      *
-     * @param string $model
+     * @param string $key
      *
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public static function get($model)
+    public static function get($key)
     {
-        if (isset(static::$models[$model])) {
-            return static::$models[$model];
+        if (isset(static::$models[$key])) {
+            return static::$models[$key];
         }
 
-        throw new InvalidArgumentException("Model $model not found.");
+        throw new InvalidArgumentException("Model $key not found.");
     }
 
     /**
