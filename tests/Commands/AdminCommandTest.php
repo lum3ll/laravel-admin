@@ -9,9 +9,9 @@ class AdminCommandTest extends PHPUnit_Framework_TestCase
 {
     public function testAdminMakeCommand()
     {
-        // create any directories for the tests
-        // in the root of the project
-        $this->makeAnyNeededDirectories();
+        // create any directories/files for the tests
+        // in the root of the project.
+        $this->makeAnyNeededDirectoriesOrFiles();
 
         // Create a "mock" base_path helper function
         // similar to laravels base_path helper.
@@ -41,42 +41,22 @@ class AdminCommandTest extends PHPUnit_Framework_TestCase
         $this->assertSame(trim($tester->getDisplay()), 'Laravel admin has been installed, please run your migrations.');
     }
 
-    private function makeAnyNeededDirectories()
+    private function makeAnyNeededDirectoriesOrFiles()
     {
-        if (!is_dir('output')) {
-            mkdir('output');
-        }
+        mkdir('output');
+        mkdir('output/app');
+        mkdir('output/app/Http');
+        mkdir('output/app/Http/Controllers');
+        
+        mkdir('output/routes');
+        touch('output/routes/web.php');
 
-        if (!is_dir('output/database')) {
-            mkdir('output/database');
-        }
-
-        if (!is_dir('output/database/migrations')) {
-            mkdir('output/database/migrations');
-        }
-
-        if (!is_dir('output/app')) {
-            mkdir('output/app');
-        }
-
-        if (!is_dir('output/app/Http')) {
-            mkdir('output/app/Http');
-        }
-
-        if (!is_dir('output/app/Http/Controllers')) {
-            mkdir('output/app/Http/Controllers');
-        }
-
-        if (!is_dir('output/resources')) {
-            mkdir('output/resources');
-        }
-
-        if (!is_dir('output/resources/views')) {
-            mkdir('output/resources/views');
-        }
-
-        if (!is_dir('output/config')) {
-            mkdir('output/config');
-        }
+        mkdir('output/resources');
+        mkdir('output/resources/views');
+        mkdir('output/resources/views/layouts');
+        
+        mkdir('output/config');
+        mkdir('output/database');
+        mkdir('output/database/migrations');
     }
 }
