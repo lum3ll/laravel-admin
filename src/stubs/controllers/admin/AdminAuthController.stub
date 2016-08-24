@@ -9,6 +9,16 @@ use App\Http\Controllers\Controller;
 class AdminAuthController extends Controller
 {
     /**
+     * AdminAuthController constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * Display an authentication view.
      *
      * @return \Illuminate\View\View
@@ -26,6 +36,6 @@ class AdminAuthController extends Controller
      */
     public function check(Request $request)
     {
-        
+
     }
 }
