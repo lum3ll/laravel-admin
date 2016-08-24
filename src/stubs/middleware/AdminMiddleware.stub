@@ -22,22 +22,12 @@ class AdminMiddleware
             return redirect()->route('admin.login');
         }
 
-        $admin = new $this->getAdminModel();
+        $admin = config('admin.lcoation');
 
-        if ($admin->hasPrivelages()) {
+        if ($admin::hasPrivelages()) {
             return $next($request);
         }
 
         return redirect()->route('admin.login');
-    }
-
-    /**
-     * Retrieve the admin models namespace from config.
-     *
-     * @return string
-     */
-    private function getAdminModel()
-    {
-        return config('admin.lcoation');
     }
 }
