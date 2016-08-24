@@ -48,7 +48,7 @@ class DashboardController extends Controller
 
         $records = $model->paginate(20);
 
-        return view('admin.model')
+        return view('admin.view')
             ->with('model', $model)
             ->with('records', $records);
     }

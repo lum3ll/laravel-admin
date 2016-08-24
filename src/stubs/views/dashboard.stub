@@ -20,7 +20,7 @@
                         <tbody>
                             @foreach ($models as $model)
                                 <tr>
-                                    <td>{{ $model->getConnectionName() }}</td>
+                                    <td>{{ $model->getConnectionName() ? $model->getConnectionName() : 'N/A' }}</td>
                                     <td>{{ $model->getTable() }}</td>
                                     <td>{{ $model->getKeyName() }}</td>
                                     <td>{{ $model->count() }}</td>

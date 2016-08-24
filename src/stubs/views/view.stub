@@ -1,4 +1,4 @@
-@exends('layouts.admin')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -6,7 +6,28 @@
             <div class="panel-heading">{{ $model->getTable() }}</div>
             <div class="panel-body">
                 @if ($records->count() > 0)
-                    This table has more than one record.
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    @foreach ($records->first()->toArray() as $field => $value)
+                                        <th>{{ $field }}</th>
+                                    @endforeach
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($records as $record)
+                                    <tr>
+                                        @foreach ($record->toArray() as $field => $value)
+                                            <td>{{ substr($value, 0, 30) }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{ $records->render() }}
                 @else
                     This model has no records just yet.
                 @endif
