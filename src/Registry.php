@@ -10,7 +10,7 @@ class Registry
     /**
      * @var array
      */
-    private static $models = [];
+    private $models = [];
 
     /**
      * Register a new eloquent model.
@@ -21,13 +21,13 @@ class Registry
      * @throws \InvalidArgumentException
      * @return void
      */
-    public static function add($key, $value)
+    public function add($key, $value)
     {
         if (!$value instanceof Model) {
             throw new InvalidArgumentException('Expected an instance of a model.');
         }
 
-        static::$models[$key] = $value;
+        $this->models[$key] = $this->toObject($value);
     }
 
     /**
@@ -38,10 +38,10 @@ class Registry
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public static function get($key)
+    public function get($key)
     {
-        if (isset(static::$models[$key])) {
-            return static::$models[$key];
+        if (isset($this->models[$key])) {
+            return $this->models[$key];
         }
 
         throw new InvalidArgumentException("Model $key not found.");
@@ -52,8 +52,19 @@ class Registry
      *
      * @return array
      */
-    public static function all()
+    public function all()
     {
-        return static::$models;
+        return $this->models;
+    }
+
+    /**
+     * Create an object from a namespace.
+     *
+     * @param  string  $namespace
+     * @return mixed
+     */
+    private function toObject($namespace)
+    {
+        return new $namespace;
     }
 }

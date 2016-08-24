@@ -9,6 +9,7 @@ class RegistryTest extends PHPUnit_Framework_Testcase
      */
     public function testRegistryThrowsExceptionWhenNotInstanceOfModel()
     {
-        Registry::add('invalid', 'argument');
+        $registry = new Registry;
+        $registry->add('invalid', 'argument');
     }
 }

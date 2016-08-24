@@ -6,7 +6,17 @@
             <div class="panel-heading">Your dashboard</div>
             <div class="panel-body">
                 @if ($models->count() > 0)
-                    You have models!
+                    <table class="table">
+                        <tbody>
+                            @foreach ($models as $model)
+                                <tr>
+                                    <td>{{ $model->getTable() }}</td>
+                                    <td>{{ $model->getKeyName() }}</td>
+                                    <td>{{ $model->count() }} Records</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @else
                     You haven't registered any backend's yet.
                 @endif

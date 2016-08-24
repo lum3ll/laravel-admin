@@ -3,6 +3,7 @@
 namespace {{ namespace }}Http\Controllers\Admin;
 
 use LaravelAdmin\Registry;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -10,11 +11,12 @@ class DashboardController extends Controller
     /**
      * DashboardController constructor.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->retrieveBackends();
+        $this->serializeIfNotSerialized($request);
     }
 
     /**
@@ -24,10 +26,23 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $models = Registry::all();
+        $models = unserialize(base64_decode($request->session()->get('adminBackends')));
 
         return view('admin.dashboard')
             ->with('models', collect($models));
+    }
+
+    /**
+     * Check if the backend registry exists.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    private function serializeIfNotSerialized(Request $request)
+    {
+        if (!$request->session()->has('adminBackends')) {
+            $request->session()->put(serialize(base64_encode($this->retrieveRegistry())));
+        }
     }
 
     /**
@@ -35,12 +50,14 @@ class DashboardController extends Controller
      *
      * @return void
      */
-    private function retrieveBackends()
+    private function retrieveRegistry()
     {
-        $models = config('admin.models');
+        $registry = new Registry;
 
-        foreach ($models as $key => $value) {
-            Registry::add($key, $value);
+        foreach (config('admin.models') as $key => $value) {
+            $registry->add($key, $value);
         }
+
+        return $registry;
     }
 }
