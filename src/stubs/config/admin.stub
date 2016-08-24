@@ -4,6 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Admin model location.
+    |--------------------------------------------------------------------------
+    |
+    | Below will represent where the Admin model is in your current filesystem.
+    | If you ever move it into a "models" directory for example, you will need
+    | to update the namespace here.
+    |
+    */
+
+    'location' => \App\Admin::class,
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin route prefix.
     |--------------------------------------------------------------------------
     |
@@ -13,6 +26,21 @@ return [
     */
     
     'prefix' => '/admin',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin authentication configuration.
+    |--------------------------------------------------------------------------
+    |
+    | The below array represents the fields in your users table that will be 
+    | used to validate a user against when logging into the admin backend.
+    |
+    */
+
+    'authentication' => [
+        'identifier' => 'email',
+        'key' => 'password'
+    ],
 
     /*
     |--------------------------------------------------------------------------
