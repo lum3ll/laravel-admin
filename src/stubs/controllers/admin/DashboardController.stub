@@ -27,10 +27,10 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $models = unserialize($request->session()->get('adminBackends'));
+        $registry = unserialize($request->session()->get('adminBackends'));
 
         return view('admin.dashboard')
-            ->with('models', collect($models));
+            ->with('models', collect($registry->all()));
     }
 
     /**
@@ -42,7 +42,7 @@ class DashboardController extends Controller
     private function serializeIfNotSerialized(Request $request)
     {
         if (!$request->session()->has('adminBackends')) {
-            $request->session()->put(serialize($this->retrieveRegistry()));
+            $request->session()->put('adminBackends', serialize($this->retrieveRegistry()));
         }
     }
 
