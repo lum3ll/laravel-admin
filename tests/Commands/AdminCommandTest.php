@@ -49,6 +49,7 @@ class AdminCommandTest extends PHPUnit_Framework_TestCase
         mkdir('output');
         mkdir('output/app');
         mkdir('output/app/Http');
+        mkdir('output/app/Http/Middleware');
         mkdir('output/app/Http/Controllers');
         
         mkdir('output/routes');

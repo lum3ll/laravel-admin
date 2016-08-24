@@ -47,6 +47,20 @@ trait LaravelAdminTrait
     ];
 
     /**
+     * @var array
+     */
+    private $middleware = [
+        '/app/Http/Middleware/AdminMiddleware.php' => 'middleware/AdminMiddleware.stub'
+    ];
+
+    /**
+     * @var array
+     */
+    private $models = [
+        '/app/Admin.php' => 'models/admin.stub'
+    ];
+
+    /**
      * Retrieve all directories.
      *
      * @return array
@@ -63,6 +77,13 @@ trait LaravelAdminTrait
      */
     protected function files()
     {
-        return array_merge($this->views, $this->controllers, $this->migrations, $this->config);
+        return array_merge(
+            $this->views, 
+            $this->controllers, 
+            $this->migrations, 
+            $this->config,
+            $this->middleware,
+            $this->models
+        );
     }
 }
