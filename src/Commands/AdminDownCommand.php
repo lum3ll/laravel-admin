@@ -44,7 +44,7 @@ class AdminDownCommand extends Command
      */
     private function unlinkFiles()
     {
-        foreach ($this->files as $file => $stub) {
+        foreach ($this->files() as $file => $stub) {
             unlink(base_path() . $file);
         }
     }
@@ -56,7 +56,7 @@ class AdminDownCommand extends Command
      */
     private function removeDirectories()
     {
-        foreach (array_reverse($this->directories) as $directory) {
+        foreach (array_reverse($this->directories()) as $directory) {
             // Scan the directories for any sub-directories/files
             // that may have been created by the developer.
             $scanned = scandir(base_path() . $directory);

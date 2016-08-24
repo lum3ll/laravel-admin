@@ -55,7 +55,7 @@ class AdminUpCommand extends Command
      */
     private function createAdminDirectories()
     {
-        foreach ($this->directories as $directory) {
+        foreach ($this->directories() as $directory) {
             if (!is_dir(base_path() . $directory)) {
                 mkdir(base_path() . $directory);
             }
@@ -69,7 +69,7 @@ class AdminUpCommand extends Command
      */
     private function turnStubsIntoFiles()
     {
-        foreach ($this->files as $key => $value) {
+        foreach ($this->files() as $key => $value) {
             // Format a file location from the array of stubs
             // that need to be turned into views/files.
             $filename = base_path() . $key;
