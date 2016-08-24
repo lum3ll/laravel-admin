@@ -23,7 +23,7 @@ class Registry
      */
     public function add($key, $value)
     {
-        if (!$value instanceof Model) {
+        if (get_parent_class($value) != 'Illuminate\Database\Eloquent\Model') {
             throw new InvalidArgumentException('Expected an instance of a model.');
         }
 

@@ -22,11 +22,12 @@ class DashboardController extends Controller
     /**
      * Render the admin dashboard.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $models = unserialize(base64_decode($request->session()->get('adminBackends')));
+        $models = unserialize($request->session()->get('adminBackends'));
 
         return view('admin.dashboard')
             ->with('models', collect($models));
@@ -41,7 +42,7 @@ class DashboardController extends Controller
     private function serializeIfNotSerialized(Request $request)
     {
         if (!$request->session()->has('adminBackends')) {
-            $request->session()->put(serialize(base64_encode($this->retrieveRegistry())));
+            $request->session()->put(serialize($this->retrieveRegistry()));
         }
     }
 

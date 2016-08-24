@@ -23,7 +23,7 @@ trait LaravelAdminTrait
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
         '/database/migrations/created_admin_users_table.php' => 'migrations/create_admin_users_table.stub',
-        '/app/Http/Controllers/Admin/AuthController.php' => 'controllers/admin/AuthController.stub',
+        '/app/Http/Controllers/Admin/AdminAuthController.php' => 'controllers/admin/AdminAuthController.stub',
         '/app/Http/Controllers/Admin/DashboardController.php' => 'controllers/admin/DashboardController.stub'
     ];
 }
