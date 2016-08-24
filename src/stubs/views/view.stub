@@ -1,0 +1,16 @@
+@exends('layouts.admin')
+
+@section('content')
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ $model->getTable() }}</div>
+            <div class="panel-body">
+                @if ($records->count() > 0)
+                    This table has more than one record.
+                @else
+                    This model has no records just yet.
+                @endif
+            </div>
+        </div>
+    </div>
+@endsection

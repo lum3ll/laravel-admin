@@ -34,6 +34,26 @@ class DashboardController extends Controller
     }
 
     /**
+     * When a model is viewed.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $model
+     * @return \Illuminate\Http\View
+     */
+    public function view(Request $request, $model)
+    {
+        $registry = unserialize($request->session()->get('adminBackends'));
+
+        $model = $registry->get($model);
+
+        $records = $model->paginate(20);
+
+        return view('admin.model')
+            ->with('model', $model)
+            ->with('records', $records);
+    }
+
+    /**
      * Check if the backend registry exists.
      *
      * @param  \Illuminate\Http\Request  $request
