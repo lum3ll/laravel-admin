@@ -7,12 +7,25 @@ return [
     | Admin route prefix.
     |--------------------------------------------------------------------------
     |
-    | The below string is used to determine the route prefix when accessing
+    | The below key is used to determine the route prefix when accessing
     | administrator routes. For example "/admin/dashboard".
     |
     */
     
     'prefix' => '/admin',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin table pagination.
+    |--------------------------------------------------------------------------
+    |
+    | The below key will represent the pagination length when viewing
+    | data from a given model. If you want to increase the data set you
+    | can do that here.
+    |
+    */
+
+    'pagination' => 20,
 
     /*
     |--------------------------------------------------------------------------
