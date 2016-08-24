@@ -36,6 +36,23 @@ class AdminAuthController extends Controller
      */
     public function check(Request $request)
     {
+        $attempt = Auth::attempt([
+            config('admin.authentication.identifier') => $request->get('username'),
+            config('admin.authentication.key') => $request->get('password')
+        ], false);
 
+        if (!$attempt) {
+            return redirect()->back();
+        }
+
+        $admin = config('admin.location');
+        
+        if ($admin::hasPrivelages()) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        Auth::logout();
+
+        return redirect()->back();
     }
 }

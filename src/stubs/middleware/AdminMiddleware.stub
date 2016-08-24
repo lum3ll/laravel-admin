@@ -5,7 +5,7 @@ namespace {{ namespace }}Http\Middleware;
 use Auth;
 use Closure;
 
-class AdminMiddleware extends Middleware
+class AdminMiddleware
 {
     /**
      * Administration middleware.
@@ -19,16 +19,16 @@ class AdminMiddleware extends Middleware
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guest()) {
-            return $request->redirect()->route('admin.login');
+            return redirect()->route('admin.login');
         }
 
-        $admin = new {$this->getAdminModel()};
+        $admin = new $this->getAdminModel();
 
         if ($admin->hasPrivelages()) {
             return $next($request);
         }
 
-        return $request->redirect()->route('admin.login');
+        return redirect()->route('admin.login');
     }
 
     /**

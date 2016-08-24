@@ -3,7 +3,7 @@ $prefix = config('admin.prefix');
 
 Route::group(['namespace' => 'Admin', 'middleware' => 'web'], function () use ($prefix) {
     Route::get($prefix . '/login', [
-        'uses' => 'AuthController@index',
+        'uses' => 'AdminAuthController@index',
         'as' => 'admin.login'
     ]);
 

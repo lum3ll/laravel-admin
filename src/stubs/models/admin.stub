@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }};
+namespace App;
 
 use Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -19,12 +19,21 @@ class Admin extends Model
      *
      * @return boolean
      */
-    public function hasPrivelages()
+    /**
+     * If a user has admin privelages.
+     *
+     * @return boolean
+     */
+    public static function hasPrivelages()
     {
         $key = Auth::user()->getKeyName();
 
-        $check = $this->where('user', Auth::user()->{$key})->first();
+        $check = static::where('user', Auth::user()->{$key})->first();
 
-        return $check->count() > 0;
+        if ($check === null) {
+            return false;
+        }
+
+        return true;
     }
 }

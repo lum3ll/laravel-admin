@@ -45,7 +45,9 @@ class AdminDownCommand extends Command
     private function unlinkFiles()
     {
         foreach ($this->files() as $file => $stub) {
-            unlink(base_path() . $file);
+            if (file_exists(base_path() . $file)) {
+                unlink(base_path() . $file);
+            }
         }
     }
 

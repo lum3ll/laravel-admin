@@ -11,21 +11,13 @@ class DashboardController extends Controller
     /**
      * DashboardController constructor.
      *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware({{ namespace }}Http\Middleware\AdminMiddleware::class);
-    }
-
-    /**
-     * DashboardController constructor.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
     public function __construct(Request $request)
     {
+        $this->middleware(\{{ namespace }}Http\Middleware\AdminMiddleware::class);
+        
         $this->serializeIfNotSerialized($request);
     }
 

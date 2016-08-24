@@ -36,7 +36,7 @@ trait LaravelAdminTrait
      * @var array
      */
     private $migrations = [
-        '/database/migrations/created_admin_users_table.php' => 'migrations/create_admin_users_table.stub'
+        '/database/migrations/create_admins_table.php' => 'migrations/create_admins_table.stub'
     ];
 
     /**
