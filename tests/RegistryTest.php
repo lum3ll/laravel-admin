@@ -12,4 +12,13 @@ class RegistryTest extends PHPUnit_Framework_Testcase
         $registry = new Registry;
         $registry->add('invalid', $this);
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRegistryThrowsExceptionWhenNotObject()
+    {
+        $registry = new Registry;
+        $registry->add('invalid', 'string');
+    }
 }
