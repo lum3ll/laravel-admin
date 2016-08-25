@@ -23,7 +23,7 @@ class Registry
      */
     public function add($key, $value)
     {
-        if (is_subclass_of($value, 'Model')) {
+        if (!is_subclass_of($value, 'Model')) {
             throw new InvalidArgumentException('Expected an instance of a model.');
         }
 
