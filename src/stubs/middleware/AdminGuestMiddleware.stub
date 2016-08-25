@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Auth;
+use Closure;
+
+class AdminGuestMiddleware
+{
+    /**
+     * Administration middleware.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null $guard
+     *
+     * @return mixed
+     */
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if (Auth::guest()) {
+            return $next($request);
+        }
+
+        $admin = config('admin.location');
+
+        if ($admin::hasPrivelages()) {
+            return $next($request);
+        }
+
+        return redirect('/');
+    }
+}

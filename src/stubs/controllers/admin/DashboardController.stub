@@ -5,6 +5,7 @@ namespace {{ namespace }}Http\Controllers\Admin;
 use LaravelAdmin\Registry;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use {{ namespace }}Http\Middleware\AdminMiddleware;
 
 class DashboardController extends Controller
 {
@@ -16,9 +17,9 @@ class DashboardController extends Controller
      */
     public function __construct(Request $request)
     {
-        $this->middleware(\{{ namespace }}Http\Middleware\AdminMiddleware::class);
+        $this->middleware(AdminMiddleware::class);
         
-        $this->serializeIfNotSerialized($request);
+        $this->serializeModelRegistry($request);
     }
 
     /**
@@ -61,11 +62,11 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    private function serializeIfNotSerialized(Request $request)
+    private function serializeModelRegistry(Request $request)
     {
-        if (!$request->session()->has('adminBackends')) {
-            $request->session()->put('adminBackends', serialize($this->retrieveRegistry()));
-        }
+        $registry = serialize($this->retrieveRegistry());
+
+        $request->session()->put('adminBackends', $registry);
     }
 
     /**

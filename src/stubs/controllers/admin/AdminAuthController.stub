@@ -5,6 +5,7 @@ namespace {{ namespace }}Http\Controllers\Admin;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Middleware\AdminGuestMiddleware;
 
 class AdminAuthController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminAuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware(AdminGuestMiddleware::class);
     }
 
     /**
@@ -37,8 +38,8 @@ class AdminAuthController extends Controller
     public function check(Request $request)
     {
         $attempt = Auth::attempt([
-            config('admin.authentication.identifier') => $request->get('username'),
-            config('admin.authentication.key') => $request->get('password')
+            config('admin.authentication.identifier') => $request->get('identifier'),
+            config('admin.authentication.key') => $request->get('key')
         ], false);
 
         if (!$attempt) {
