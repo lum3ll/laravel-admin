@@ -25,7 +25,7 @@ class AdminGuestMiddleware
         $admin = config('admin.location');
 
         if ($admin::hasPrivelages()) {
-            return $next($request);
+            return redirect()->route('admin.dashboard');
         }
 
         return redirect('/');
