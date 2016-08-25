@@ -19,11 +19,6 @@ class Admin extends Model
      *
      * @return boolean
      */
-    /**
-     * If a user has admin privelages.
-     *
-     * @return boolean
-     */
     public static function hasPrivelages()
     {
         $key = Auth::user()->getKeyName();
