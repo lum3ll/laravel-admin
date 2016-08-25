@@ -50,7 +50,8 @@ trait LaravelAdminTrait
      * @var array
      */
     private $middleware = [
-        '/app/Http/Middleware/AdminMiddleware.php' => 'middleware/AdminMiddleware.stub'
+        '/app/Http/Middleware/AdminMiddleware.php' => 'middleware/AdminMiddleware.stub',
+        '/app/Http/Middleware/AdminGuestMiddleware.php' => 'middleware/AdminGuestMiddleware.stub'
     ];
 
     /**
