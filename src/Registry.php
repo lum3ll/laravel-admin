@@ -23,7 +23,7 @@ class Registry
      */
     public function add($key, $value)
     {
-        if (get_parent_class($value) != 'Illuminate\Database\Eloquent\Model') {
+        if (is_subclass_of($value, 'Model')) {
             throw new InvalidArgumentException('Expected an instance of a model.');
         }
 
