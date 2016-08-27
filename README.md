@@ -30,3 +30,4 @@ models array in the config file.
 
 ### Screenshots
 ![Laravel Admin Demo](/demo.png?raw=true)
+![Laravel Admin Demo](/demo2.png?raw=true)
