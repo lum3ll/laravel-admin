@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading">{{ $model->getTable() }}</div>
+            <div class="panel-heading">{{ $table->getTable() }}</div>
             <div class="panel-body">
                 @if ($records->count() > 0)
                     <div class="table-responsive">
@@ -13,6 +13,7 @@
                                     @foreach ($records->first()->toArray() as $field => $value)
                                         <th>{{ $field }}</th>
                                     @endforeach
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -21,6 +22,12 @@
                                         @foreach ($record->toArray() as $field => $value)
                                             <td>{{ substr($value, 0, 30) }}</td>
                                         @endforeach
+                                        <td>
+                                            <a href="{{ route('admin.edit', [
+                                                'model' => $model,
+                                                'id' => $record->{$table->getKeyName()}
+                                            ]) }}" class="label label-primary label-xs">edit</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

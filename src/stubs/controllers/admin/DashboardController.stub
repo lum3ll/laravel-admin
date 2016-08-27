@@ -4,7 +4,8 @@ namespace {{ namespace }}Http\Controllers\Admin;
 
 use LaravelAdmin\Registry;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use InvalidArgumentException;
+use {{ namespace }}Http\Controllers\Controller;
 use {{ namespace }}Http\Middleware\AdminMiddleware;
 
 class DashboardController extends Controller
@@ -47,13 +48,18 @@ class DashboardController extends Controller
     {
         $registry = unserialize($request->session()->get('adminBackends'));
 
-        $model = $registry->get($model);
+        try {
+            $table = $registry->get($model);
+        } catch (InvalidArgumentException $e) {
+            abort(404);
+        }
 
-        $records = $model->paginate(config('admin.paginate'));
+        $records = $table->paginate(config('admin.paginate'));
 
         return view('admin.view')
-            ->with('model', $model)
-            ->with('records', $records);
+            ->with('table', $table)
+            ->with('records', $records)
+            ->with('model', $model);
     }
 
     /**
