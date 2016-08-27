@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }}ttp\Controllers\Admin;
+namespace {{ namespace }}Http\Controllers\Admin;
 
 use LaravelAdmin\Registry;
 use Illuminate\Http\Request;
