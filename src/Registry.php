@@ -23,11 +23,7 @@ class Registry
      */
     public function add($key, $value)
     {
-        if (!is_object($value)) {
-            throw new InvalidArgumentException('Expected an instance of a model.');
-        }
-
-        if (!array_key_exists('Illuminate\Database\Eloquent\Model', class_parents($value))) {
+        if (!is_subclass_of($value, 'Illuminate\Database\Eloquent\Model')) {
             throw new InvalidArgumentException('Expected an instance of a model.');
         }
 
