@@ -26,4 +26,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'web'], function () use ($
         'uses' => 'AdminCreateController@index',
         'as' => 'admin.create'
     ]);
+
+    Route::post($prefix . '/{model}/create', [
+        'uses' => 'AdminCreateController@store',
+        'as' => 'admin.create.post'
+    ]);
 });

@@ -8,7 +8,9 @@
                     <div class="panel-heading">Create a new entry</div>
                     <div class="panel-body">
                         @if (count($table->getFillable()) > 0)
-                            <form action="" method="POST" class="form-horizontal">
+                            <form method="POST" class="form-horizontal">
+                                {{ csrf_field() }}
+                                
                                 @foreach ($table->getFillable() as $field)
                                     <div class="form-group">
                                         <label class="col-sm-3 text-right">{{ $field }}</label>

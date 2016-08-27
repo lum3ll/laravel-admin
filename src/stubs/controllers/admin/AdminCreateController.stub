@@ -1,12 +1,12 @@
 <?php
 
-namespace {{ namespace }}Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use LaravelAdmin\Registry;
 use Illuminate\Http\Request;
 use InvalidArugmentException;
-use {{ namespace }}Http\Controllers\Controller;
-use {{ namespace }}Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\AdminMiddleware;
 
 class AdminCreateController extends Controller
 {
@@ -45,10 +45,23 @@ class AdminCreateController extends Controller
      * Store a model.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $model
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(Request $request, $model)
     {
+        $registry = unserialize($request->session()->get('adminBackends'));
 
+        try {
+            $table = $registry->get($model);
+        } catch (InvalidArugmentException $e) {
+            abort(404);
+        }
+
+        $table->create($request->all());
+
+        return redirect()->route('admin.dashboard.view', [
+            'model' => $model
+        ]);
     }
 }
