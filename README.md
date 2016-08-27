@@ -1,6 +1,8 @@
 # Laravel Admin
 Create a Laravel admin backend with a few simple commands.
 
+[![Build Status](https://travis-ci.org/jordanbardsley7/laravel-admin.svg)](https://travis-ci.org/jordanbardsley7/laravel-admin.svg)
+
 ### Register the service provider
 First things first, you need to register the service provider to be able to use the artisan console command.
 To do so add the following code into the providers array in `config/app.php` and you will be able to use 
@@ -25,3 +27,5 @@ models array in the config file.
     'users' => \App\User::class
 ],
 ```
+
+![Laravel Admin Demo](/demo.png?raw=true)
