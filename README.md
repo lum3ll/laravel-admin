@@ -30,5 +30,11 @@ models array in the config file.
 ```
 
 ### Screenshots
-![Laravel Admin Demo](/screenshots/demo.png?raw=true)
+This screenshot demonstrates the user interface for editing a model entry. You have the option to update the fillable fields on the model and you can delete the model.
+![Laravel Admin Demo](/screenshots/demo1.png?raw=true)
+
+This screenshot shows the user interface for listing all the models you have registed in the admin configuration file.
 ![Laravel Admin Demo](/screenshots/demo2.png?raw=true)
+
+This screenshot shows the user interface when you are viewing all the entries within a model. You can update the pagination length in the admin configuration, it defaults to 20.
+![Laravel Admin Demo](/screenshots/demo3.png?raw=true)
