@@ -30,7 +30,7 @@
                                 <input type="hidden" name="_method" value="put">
                             </form>
                         @else
-                           {{ $table->getTable() }} doesn't have any fillable fields.
+                           {{ $model->getTable() }} doesn't have any fillable fields.
                         @endif
                     </div>
                 </div>
