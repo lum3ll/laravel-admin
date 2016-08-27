@@ -7,7 +7,25 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Create a new entry</div>
                     <div class="panel-body">
-                        
+                        @if (count($table->getFillable()) > 0)
+                            <form action="" method="POST" class="form-horizontal">
+                                @foreach ($table->getFillable() as $field)
+                                    <div class="form-group">
+                                        <label class="col-sm-3 text-right">{{ $field }}</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="{{ $field }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <div class="form-group">
+                                    <div class="col-sm-9 col-sm-push-3">
+                                        <button class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        @else
+                           {{ $table->getTable() }} doesn't have any fillable fields.
+                        @endif
                     </div>
                 </div>
             </div>

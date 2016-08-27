@@ -21,7 +21,8 @@ trait LaravelAdminTrait
         '/resources/views/layouts/admin.blade.php' => 'views/templates/admin.stub',
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
-        '/resources/views/admin/view.blade.php' => 'views/view.stub'
+        '/resources/views/admin/view.blade.php' => 'views/view.stub',
+        '/resources/views/admin/create.blade.php' => 'views/create.stub'
     ];
 
     /**
@@ -29,14 +30,15 @@ trait LaravelAdminTrait
      */
     private $controllers = [
         '/app/Http/Controllers/Admin/AdminAuthController.php' => 'controllers/admin/AdminAuthController.stub',
-        '/app/Http/Controllers/Admin/DashboardController.php' => 'controllers/admin/DashboardController.stub'
+        '/app/Http/Controllers/Admin/DashboardController.php' => 'controllers/admin/DashboardController.stub',
+        '/app/Http/Controllers/Admin/AdminCreateController.php' => 'controllers/admin/AdminCreateController.stub'
     ];
 
     /**
      * @var array
      */
     private $migrations = [
-        '/database/migrations/create_admins_table.php' => 'migrations/create_admins_table.stub'
+        '/database/migrations/create_admins_table.php' => 'migrations/2016_08_25_create_admins_table.stub'
     ];
 
     /**
