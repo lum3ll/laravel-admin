@@ -6,40 +6,42 @@
             <div class="panel-heading">Your dashboard</div>
             <div class="panel-body">
                 @if ($models->count() > 0)
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Model Name</th>
-                                <th>Connection</th>
-                                <th>Table Name</th>
-                                <th>Primary Key</th>
-                                <th>Count</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($models as $table => $model)
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>{{ $table }}</td>
-                                    <td>{{ $model->getConnectionName() ? $model->getConnectionName() : 'N/A' }}</td>
-                                    <td>{{ $model->getTable() }}</td>
-                                    <td>{{ $model->getKeyName() }}</td>
-                                    <td>{{ $model->count() }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.dashboard.view', [
-                                            'table' => $table
-                                        ]) }}" class="btn btn-primary btn-xs">view</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admin.create', [
-                                            'table' => $table
-                                        ]) }}" class="btn btn-success btn-xs">create</a>
-                                    </td>
+                                    <th>Model Name</th>
+                                    <th>Connection</th>
+                                    <th>Table Name</th>
+                                    <th>Primary Key</th>
+                                    <th>Count</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($models as $table => $model)
+                                    <tr>
+                                        <td>{{ $table }}</td>
+                                        <td>{{ $model->getConnectionName() ? $model->getConnectionName() : 'N/A' }}</td>
+                                        <td>{{ $model->getTable() }}</td>
+                                        <td>{{ $model->getKeyName() }}</td>
+                                        <td>{{ $model->count() }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.dashboard.view', [
+                                                'table' => $table
+                                            ]) }}" class="btn btn-primary btn-xs">view</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.create', [
+                                                'table' => $table
+                                            ]) }}" class="btn btn-success btn-xs">create</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 @else
                     You haven't registered any backend's yet.
                 @endif

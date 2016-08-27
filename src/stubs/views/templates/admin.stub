@@ -3,8 +3,18 @@
     <head>
         <title>Laravel Admin</title>
 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+
+        <style type="text/css">
+            body {
+                border-top: 4px solid #f4645f;
+            }
+
+            .navbar-brand {
+                color: #f4645f !important;
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
 
