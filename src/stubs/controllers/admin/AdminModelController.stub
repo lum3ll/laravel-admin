@@ -11,25 +11,31 @@ use {{ namespace }}Http\Middleware\AdminMiddleware;
 class AdminModelController extends Controller
 {
     /**
+     * @var \Illuminate\Http\Request
+     */
+    private $request;
+
+    /**
      * AdminController constructor.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
+        $this->request = $request;
+
         $this->middleware(AdminMiddleware::class);
     }
 
     /**
      * Display a resource to create an entry.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $model
      * @return \Illuminate\View\View
      */
-    public function index(Request $request, $model)
+    public function index($model)
     {
-        $registry = unserialize($request->session()->get('adminBackends'));
+        $registry = unserialize($this->request->session()->get('adminBackends'));
 
         try {
             $table = $registry->get($model);
@@ -44,13 +50,12 @@ class AdminModelController extends Controller
     /**
      * Store a model.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $model
      * @return mixed
      */
-    public function store(Request $request, $model)
+    public function store($model)
     {
-        $registry = unserialize($request->session()->get('adminBackends'));
+        $registry = unserialize($this->request->session()->get('adminBackends'));
 
         try {
             $table = $registry->get($model);
@@ -58,7 +63,7 @@ class AdminModelController extends Controller
             abort(404);
         }
 
-        $table->create($request->all());
+        $table->create($this->request->all());
 
         return redirect()->route('admin.dashboard.view', [
             'model' => $model
@@ -68,14 +73,13 @@ class AdminModelController extends Controller
     /**
      * Edit a model.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $model
      * @param  integer  $id
      * @return \Illuminate\View\View
      */
-    public function edit(Request $request, $model, $id)
+    public function edit($model, $id)
     {
-        $registry = unserialize($request->session()->get('adminBackends'));
+        $registry = unserialize($this->request->session()->get('adminBackends'));
 
         try {
             $table = $registry->get($model);
@@ -92,14 +96,13 @@ class AdminModelController extends Controller
     /**
      * Update a model.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $model
      * @param  integer  $id
      * @return \Illuminate\View\View
      */
-    public function update(Request $request, $model, $id)
+    public function update($model, $id)
     {
-        $registry = unserialize($request->session()->get('adminBackends'));
+        $registry = unserialize($this->request->session()->get('adminBackends'));
 
         try {
             $table = $registry->get($model);
@@ -108,8 +111,33 @@ class AdminModelController extends Controller
         }
 
         $model = $table->findOrFail($id)
-            ->update($request->all());
+            ->update($this->request->all());
 
         return redirect()->back();
+    }
+
+    /**
+     * Delete an entry.
+     *
+     * @param  string  $model
+     * @param  integer  $id
+     * @return \Illuminate\View\View
+     */
+    public function destroy($model, $id)
+    {
+        $registry = unserialize($this->request->session()->get('adminBackends'));
+
+        try {
+            $table = $registry->get($model);
+        } catch (InvalidArgumentException $e) {
+            abort(404);
+        }
+
+        $table->findOrFail($id)
+            ->delete();
+
+        return redirect()->route('admin.dashboard.view', [
+            'model' => $model
+        ]);
     }
 }

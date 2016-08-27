@@ -34,6 +34,16 @@
                         @endif
                     </div>
                 </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Delete this model</div>
+                    <div class="panel-body">
+                        <form action="" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

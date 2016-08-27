@@ -41,4 +41,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'web'], function () use ($
         'uses' => 'AdminModelController@update',
         'as' => 'admin.edit.put'
     ]);
+
+    Route::delete($prefix . '/{model}/{id}', [
+        'uses' => 'AdminModelController@destroy',
+        'as' => 'admin.delete'
+    ]);
 });
