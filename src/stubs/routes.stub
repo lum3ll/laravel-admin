@@ -21,4 +21,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'web'], function () use ($
         'uses' => 'DashboardController@view',
         'as' => 'admin.dashboard.view'
     ]);
+
+    Route::get($prefix . '/{model}/create', [
+        'uses' => 'AdminCreateController@index',
+        'as' => 'admin.create'
+    ]);
 });

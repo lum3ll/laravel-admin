@@ -12,7 +12,7 @@ the command.
 
 ### Running the command
 Once the service provider is added to the configuration, you will be able to run the admin make command. So all
-you need to do is run `php artisan admin:make` and that will generate all the controllers, routes, views, etc...
+you need to do is run `php artisan admin:up` and that will generate all the controllers, routes, views, etc...
 for the admin backend.
 
 ### Registering models (tables)

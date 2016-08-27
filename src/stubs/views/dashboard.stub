@@ -32,7 +32,9 @@
                                         ]) }}" class="btn btn-primary btn-xs">view</a>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-success btn-xs">create</a>
+                                        <a href="{{ route('admin.create', [
+                                            'table' => $table
+                                        ]) }}" class="btn btn-success btn-xs">create</a>
                                     </td>
                                 </tr>
                             @endforeach

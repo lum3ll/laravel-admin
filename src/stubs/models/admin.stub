@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model
 {
     /**
-     * The model table name.
-     *
      * @var string
      */
     protected $table = 'admins';

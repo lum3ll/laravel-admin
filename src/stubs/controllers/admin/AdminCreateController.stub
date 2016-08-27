@@ -1,0 +1,54 @@
+<?php
+
+namespace {{ namespace }}Http\Controllers\Admin;
+
+use LaravelAdmin\Registry;
+use Illuminate\Http\Request;
+use InvalidArugmentException;
+use {{ namespace }}Http\Controllers\Controller;
+use {{ namespace }}Http\Middleware\AdminMiddleware;
+
+class AdminCreateController extends Controller
+{
+    /**
+     * AdminController constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(AdminMiddleware::class);
+    }
+
+    /**
+     * Display a resource to create an entry.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $model
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request, $model)
+    {
+        $registry = unserialize($request->session()->get('adminBackends'));
+
+        try {
+            $table = $registry->get($model);
+        } catch (InvalidArugmentException $e) {
+            abort(404);
+        }
+
+        return view('admin.create')
+            ->with('table', $table);
+    }
+
+    /**
+     * Store a model.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function store(Request $request)
+    {
+
+    }
+}
