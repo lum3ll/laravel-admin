@@ -4,7 +4,7 @@ namespace {{ namespace }}Http\Controllers\Admin;
 
 use LaravelAdmin\Registry;
 use Illuminate\Http\Request;
-use InvalidArugmentException;
+use InvalidArgumentException;
 use {{ namespace }}Http\Controllers\Controller;
 use {{ namespace }}Http\Middleware\AdminMiddleware;
 
@@ -33,7 +33,7 @@ class AdminCreateController extends Controller
 
         try {
             $table = $registry->get($model);
-        } catch (InvalidArugmentException $e) {
+        } catch (InvalidArgumentException $e) {
             abort(404);
         }
 
@@ -54,7 +54,7 @@ class AdminCreateController extends Controller
 
         try {
             $table = $registry->get($model);
-        } catch (InvalidArugmentException $e) {
+        } catch (InvalidArgumentException $e) {
             abort(404);
         }
 
