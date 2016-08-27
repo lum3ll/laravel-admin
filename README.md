@@ -28,4 +28,5 @@ models array in the config file.
 ],
 ```
 
+### Screenshots
 ![Laravel Admin Demo](/demo.png?raw=true)
