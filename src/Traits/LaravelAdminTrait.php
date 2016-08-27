@@ -22,7 +22,8 @@ trait LaravelAdminTrait
         '/resources/views/admin/auth/login.blade.php' => 'views/auth/login.stub',
         '/resources/views/admin/dashboard.blade.php' => 'views/dashboard.stub',
         '/resources/views/admin/view.blade.php' => 'views/view.stub',
-        '/resources/views/admin/create.blade.php' => 'views/create.stub'
+        '/resources/views/admin/create.blade.php' => 'views/create.stub',
+        '/resources/views/admin/edit.blade.php' => 'views/edit.stub'
     ];
 
     /**
@@ -31,7 +32,7 @@ trait LaravelAdminTrait
     private $controllers = [
         '/app/Http/Controllers/Admin/AdminAuthController.php' => 'controllers/admin/AdminAuthController.stub',
         '/app/Http/Controllers/Admin/DashboardController.php' => 'controllers/admin/DashboardController.stub',
-        '/app/Http/Controllers/Admin/AdminCreateController.php' => 'controllers/admin/AdminCreateController.stub'
+        '/app/Http/Controllers/Admin/AdminModelController.php' => 'controllers/admin/AdminModelController.stub'
     ];
 
     /**

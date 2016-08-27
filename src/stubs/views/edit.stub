@@ -5,25 +5,29 @@
         <div class="row">
             <div class="col-sm-8 col-sm-push-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create a new entry</div>
+                    <div class="panel-heading">Edit a model</div>
                     <div class="panel-body">
-                        @if (count($table->getFillable()) > 0)
-                            <form class="form-horizontal">
+                        @if (count($model->getFillable()) > 0)
+                            <form method="POST" class="form-horizontal">
                                 {{ csrf_field() }}
-                                
-                                @foreach ($table->getFillable() as $field)
-                                    <div class="form-group">
-                                        <label class="col-sm-3 text-right">{{ $field }}</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control" name="{{ $field }}">
+
+                                @foreach ($model->toArray() as $field => $value)
+                                    @if ($model->isFillable($field))
+                                        <div class="form-group">
+                                            <label class="col-sm-3 text-right">{{ $field }}</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="{{ $field }}" value="{{ $value }}">
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @endforeach
                                 <div class="form-group">
                                     <div class="col-sm-9 col-sm-push-3">
                                         <button class="btn btn-primary">Save</button>
                                     </div>
                                 </div>
+
+                                <input type="hidden" name="_method" value="put">
                             </form>
                         @else
                            {{ $table->getTable() }} doesn't have any fillable fields.

@@ -23,12 +23,22 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'web'], function () use ($
     ]);
 
     Route::get($prefix . '/{model}/create', [
-        'uses' => 'AdminCreateController@index',
+        'uses' => 'AdminModelController@index',
         'as' => 'admin.create'
     ]);
 
     Route::post($prefix . '/{model}/create', [
-        'uses' => 'AdminCreateController@store',
+        'uses' => 'AdminModelController@store',
         'as' => 'admin.create.post'
+    ]);
+
+    Route::get($prefix . '/{model}/{id}', [
+        'uses' => 'AdminModelController@edit',
+        'as' => 'admin.edit'
+    ]);
+
+    Route::put($prefix . '/{model}/{id}', [
+        'uses' => 'AdminModelController@update',
+        'as' => 'admin.edit.put'
     ]);
 });

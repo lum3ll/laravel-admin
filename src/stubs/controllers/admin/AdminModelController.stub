@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }}Http\Controllers\Admin;
+namespace {{ namespace }}ttp\Controllers\Admin;
 
 use LaravelAdmin\Registry;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use {{ namespace }}Http\Controllers\Controller;
 use {{ namespace }}Http\Middleware\AdminMiddleware;
 
-class AdminCreateController extends Controller
+class AdminModelController extends Controller
 {
     /**
      * AdminController constructor.
@@ -63,5 +63,53 @@ class AdminCreateController extends Controller
         return redirect()->route('admin.dashboard.view', [
             'model' => $model
         ]);
+    }
+
+    /**
+     * Edit a model.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $model
+     * @param  integer  $id
+     * @return \Illuminate\View\View
+     */
+    public function edit(Request $request, $model, $id)
+    {
+        $registry = unserialize($request->session()->get('adminBackends'));
+
+        try {
+            $table = $registry->get($model);
+        } catch (InvalidArgumentException $e) {
+            abort(404);
+        }
+
+        $model = $table->findOrFail($id);
+
+        return view('admin.edit')
+            ->with('model', $model);
+    }
+
+    /**
+     * Update a model.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $model
+     * @param  integer  $id
+     * @return \Illuminate\View\View
+     */
+    public function update(Request $request, $model, $id)
+    {
+        $registry = unserialize($request->session()->get('adminBackends'));
+
+        try {
+            $table = $registry->get($model);
+        } catch (InvalidArgumentException $e) {
+            abort(404);
+        }
+
+        $model = $table->findOrFail($id)
+            ->update($request->all());
+
+        return redirect()->back();
     }
 }
